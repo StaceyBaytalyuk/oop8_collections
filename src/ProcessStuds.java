@@ -80,6 +80,7 @@ public class ProcessStuds {
         for (Student s: list) {
             facul.add(s.getFaculty());
         }
+/*
 
         //если есть повтор, добавляем факультеты в список на удаление
         HashSet<String> notUnique = new HashSet<>();
@@ -91,6 +92,7 @@ public class ProcessStuds {
                 }
             }
         }
+*/
 
         //удяляем факультеты, на которых учатся Коляны
         facul.removeAll(notUnique);
