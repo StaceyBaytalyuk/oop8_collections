@@ -84,6 +84,10 @@ public class Student implements Serializable {
         return group;
     }
 
+    public String getFullName() {
+        return surname+" "+firstName+" "+secondName;
+    }
+
 
     public static class StudentBuilder {
         private int id, course, group;

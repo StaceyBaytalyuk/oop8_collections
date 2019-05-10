@@ -53,7 +53,7 @@ public class Main {
                 }
 
                 case 7: {
-                    processor.printAllSurnames();
+                    processor.printAllNames();
                     break;
                 }
 
@@ -99,7 +99,7 @@ public class Main {
         List<Student> students = processor.searchFaculty(faculty);
         if ( students.size() > 0 ) {
             System.out.println(faculty);
-            processor.printSurnames(students);
+            processor.printNames(students);
         } else {
             System.out.println("No students from "+faculty);
         }
@@ -111,7 +111,7 @@ public class Main {
         List<Student> students = processor.searchAfterYear(year);
         if ( students.size() > 0 ) {
             System.out.println("Born after "+year);
-            processor.printSurnames(students);
+            processor.printNames(students);
         } else {
             System.out.println("No students born after "+year);
         }
@@ -120,28 +120,23 @@ public class Main {
     private void C() {
         System.out.print("Enter group: ");
         int group = in.nextInt();
-        PriorityQueue<Student> students = processor.searchGroup(group);
+        Queue<Student> students = processor.searchGroup(group);
         if ( students.size() > 0 ) {
             System.out.println("Group "+group);
-            int size = students.size();
-            for (int i = 0; i < size; i++) {
-                System.out.println(students.poll());
-            }
-            //processor.printSurnames(students);
+            processor.printNamesAlphabetic(students);
         } else {
             System.out.println("No students from "+group);
         }
     }
     private void D() {
-        TreeMap < String, PriorityQueue<Student> > map = processor.facultyAgeList();
+        Map<String, Queue<Student>> map = processor.facultyAgeList();
         if ( map.size() > 0 ) {
             for (String faculty : map.keySet()) {
                 System.out.println(faculty);
                 int size = map.get(faculty).size();
                 for (int i = 0; i < size; i++) {
-                    System.out.println(map.get(faculty).poll());
+                    processor.printStudentsSortedByBirthday(map.get(faculty));
                 }
-                //processor.printSurnames(map.get(faculty));
                 System.out.println();
             }
         } else {
@@ -150,12 +145,12 @@ public class Main {
     }
 
     private void E() {
-        HashSet<String> list = processor.facultiesWithUniqueStudents();
+        Set<String> list = processor.facultiesWithUniqueStudents();
         if ( list.size() > 0 ) {
+            System.out.println("Faculties with unique students:");
             int count = 1;
             for (String faculty : list) {
-                System.out.print(count++ + ") ");
-                System.out.println(faculty);
+                System.out.println((count++) + ") "+faculty);
             }
         } else {
             System.out.println("No faculties with unique students");
@@ -163,12 +158,12 @@ public class Main {
     }
 
     private void F() {
-        HashMap<String, Integer> list = processor.numberOfStudentsAtUniqueFaculties();
+        Map<String, Integer> list = processor.numberOfStudentsAtUniqueFaculties();
         if ( list.size() > 0 ) {
+            System.out.println("Faculties with unique students:");
             int count = 1;
             for (String faculty : list.keySet()) {
-                System.out.print(count++ + ") ");
-                System.out.println(faculty + " - " + list.get(faculty) + " students");
+                System.out.println((count++) + ") "+faculty + " - " + list.get(faculty) + " students");
             }
         } else {
             System.out.println("No faculties with unique students");
