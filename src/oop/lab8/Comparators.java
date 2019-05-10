@@ -2,6 +2,12 @@ package oop.lab8;
 
 import java.util.Comparator;
 
+class StudentAgeComparator implements Comparator<Student> {
+    public int compare(Student a, Student b) {
+        return a.getBirthday().compareTo(b.getBirthday());
+    }
+}
+
 class StudentNameComparator implements Comparator<Student> {
     public int compare(Student a, Student b){
         if (a.getSurname().equals(b.getSurname()) ) {
@@ -13,17 +19,5 @@ class StudentNameComparator implements Comparator<Student> {
         } else {
             return a.getSurname().compareTo(b.getSurname());
         }
-    }
-}
-
-class StudentAgeComparator implements Comparator<Student> {
-    public int compare(Student a, Student b) {
-        return a.getBirthday().compareTo(b.getBirthday());
-    }
-}
-
-class StudentFacultyComparator implements Comparator<Student> {
-    public int compare(Student a, Student b) {
-        return a.getFaculty().compareTo(b.getFaculty());
     }
 }
